@@ -1,0 +1,93 @@
+body {  max-width: 1680px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-weight: normal;
+  background-color: #222222;
+  
+}
+
+a {
+  text-decoration: none;  
+}
+
+#__vue-devtools-container__, #vue-inspector-container {
+
+display: none;}
+
+
+#app, main  {
+ display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+span {
+color: white}
+
+li {
+list-style: none;
+}
+
+.films-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  
+}
+
+.film-li {
+width: fit-content;
+padding: 70px;
+}
+
+.film-item {
+  display: flex;
+  flex-direction: column;
+    justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.film-poster {
+background-color: #616161;
+
+}
+
+.formats {
+width: 100%;
+position: absolute;
+top: 0px;
+
+display: flex;
+  flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.format-span {
+  
+  background: #4242427c;
+  padding: 4px;
+  border-radius: 8px;
+}
+
+
+.paginate {
+width: 175px;
+display: flex;
+flex-direction: row;
+
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+a {
+  color: #cacaca;
+font-size: 1.45rem;
+}
+ a:hover {
+  color: #8b8b8b;
+}
