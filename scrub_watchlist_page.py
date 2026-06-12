@@ -14,26 +14,29 @@ Iterates over every watchlist page, passing the pages to the get_films() functio
 """
 
 
-url = os.getenv("WATCHLIST_URL")
+def scrub_page():
 
-if url is None:
-    raise Exception("No URL Inserted.")
+    url = os.getenv("WATCHLIST_URL")
 
-r = requests.get(url, headers={
-                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'})
+    if url is None:
+        raise Exception("No URL Inserted.")
 
-soup = bs4.BeautifulSoup(r.content, "html.parser")
+    r = requests.get(url, headers={
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'})
 
-next_page = soup.find_all("li", attrs={"class": "paginate-page"})
-if next_page is None:
-    raise Exception
+    soup = bs4.BeautifulSoup(r.content, "html.parser")
+
+    next_page = soup.find_all("li", attrs={"class": "paginate-page"})
+    if next_page is None:
+        raise Exception
+
+    all_films = []
+    for link in range(1, int(next_page[-1].text) + 1):
+        sleep(10)
+        page_url = f"{url}page/{link}/"
+        films = get_films(page_url)
+        all_films.extend(films)
 
 
-all_films = []
-print(next_page)
-for link in range(1, int(next_page[-1].text) + 1):
-    sleep(10)
-    page_url = f"{url}page/{link}/"
-    films = get_films(page_url)
-    print(films)
-    all_films.extend(films)
+if __name__ == "__main__":
+    scrub_page()
